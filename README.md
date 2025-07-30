@@ -42,9 +42,6 @@ The PageRank algorithm calculates the importance of each page based on:
 
 Simply open `index.html` in a web browser to start using the application.
 
-## Live Demo
-
-[View the live demo here](https://yourusername.github.io/page-rank)
 
 ## License
 
