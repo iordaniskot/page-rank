@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PageRank Algorithm Demonstration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PageRank Algorithm Demonstration</h1>
+            <div class="controls">
+                <button id="add-node">Add Node</button>
+                <button id="calculate">Calculate PageRank</button>
+                <button id="reset">Reset</button>
+            </div>
+        </header>
+        <div class="info-panel">
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li>Click "Add Node" to create a new page</li>
+                    <li>Hover over a node and click the × button to delete it</li>
+                    <li>Hold Shift and drag from one node to another to create a link</li>
+                    <li>Click on a link to delete it</li>
+                    <li>Click and drag a node to reposition it</li>
+                    <li>Click "Calculate PageRank" to see the values</li>
+                    <li>The PageRank is shown in the top right of each node</li>
+                </ul>
+            </div>
+            <div class="settings">
+                <label for="damping">Damping Factor (d): 
+                    <input type="range" id="damping" min="0" max="1" step="0.05" value="0.85">
+                    <span id="damping-value">0.85</span>
+                </label>
+                <label for="iterations">Iterations: 
+                    <input type="range" id="iterations" min="1" max="100" step="1" value="20">
+                    <span id="iterations-value">20</span>
+                </label>
+            </div>
+        </div>
+        <div id="graph-container">
+            <!-- Nodes and edges will be created here dynamically -->
+        </div>
+        
+        <div id="analytics-section">
+            <h3>PageRank Analytics</h3>
+            <table id="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Page</th>
+                        <th>PageRank Value</th>
+                        <th>Incoming Links</th>
+                        <th>Outgoing Links</th>
+                    </tr>
+                </thead>
+                <tbody id="ranking-table-body">
+                    <!-- Table rows will be added dynamically -->
+                </tbody>
+            </table>
+            <div id="link-ranks-section">
+                <h3>Link Importance Analytics</h3>
+                <div id="link-summary" class="analytics-summary">
+                    <!-- Summary stats will be added here dynamically -->
+                </div>
+                <table id="links-table">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Link Importance</th>
+                            <th>Contribution</th>
+                        </tr>
+                    </thead>
+                    <tbody id="links-table-body">
+                        <!-- Link data will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="algorithm-explanation">
+                <h3>About the PageRank Algorithm</h3>
+                <div class="explanation-content">
+                    <p>PageRank is the algorithm originally used by Google Search to rank web pages in their search results. It was named after Larry Page, one of Google's founders.</p>
+                    
+                    <h4>How It Works:</h4>
+                    <p>PageRank works by counting the number and quality of links to a page to determine a rough estimate of how important the website is. The underlying assumption is that more important websites are likely to receive more links from other websites.</p>
+                    
+                    <h4>The Algorithm:</h4>
+                    <ol>
+                        <li><strong>Initial Value:</strong> Each page is initially assigned an equal probability (1/N where N is the total number of pages)</li>
+                        <li><strong>Iterations:</strong> Through multiple iterations, the algorithm redistributes the rank values based on the link structure</li>
+                        <li><strong>Damping Factor (d):</strong> Typically 0.85, represents the probability a user will continue clicking links rather than starting a new random page visit</li>
+                        <li><strong>Formula:</strong> PR(A) = (1-d)/N + d(PR(T₁)/C(T₁) + ... + PR(Tₙ)/C(Tₙ)), where T₁...Tₙ are pages linking to A, and C(T) is the number of outbound links from page T</li>
+                    </ol>
+                    
+                    <h4>In This Interactive Tool:</h4>
+                    <ul>
+                        <li>Each <strong>node</strong> represents a web page</li>
+                        <li><strong>Links</strong> represent hyperlinks between pages</li>
+                        <li>The <strong>PageRank value</strong> shows the importance of each page</li>
+                        <li><strong>Link importance</strong> shows how much each link contributes to the target's PageRank</li>
+                        <li>The color intensity of the nodes represents their relative PageRank values</li>
+                    </ul>
+                    
+                    <p class="footnote">PageRank is just one of many factors used in modern search engines, but it remains a fundamental concept in understanding web page authority and link analysis.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
